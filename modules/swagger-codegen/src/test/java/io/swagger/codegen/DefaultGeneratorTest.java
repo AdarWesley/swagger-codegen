@@ -53,6 +53,7 @@ public class DefaultGeneratorTest {
     public void testSecurityWithoutGlobal() throws Exception {
         final Swagger swagger = new SwaggerParser().read("src/test/resources/2_0/petstore.json");
         CodegenConfig codegenConfig = new JavaClientCodegen();
+        codegenConfig.setInputSpec("src/test/resources/2_0/petstore.json");
 
         ClientOptInput clientOptInput = new ClientOptInput().opts(new ClientOpts()).swagger(swagger).config(codegenConfig);
 
@@ -96,6 +97,7 @@ public class DefaultGeneratorTest {
     public void testSecurityWithGlobal() throws Exception {
         final Swagger swagger = new SwaggerParser().read("src/test/resources/2_0/globalSecurity.json");
         CodegenConfig codegenConfig = new JavaClientCodegen();
+        codegenConfig.setInputSpec("src/test/resources/2_0/globalSecurity.json");
 
         ClientOptInput clientOptInput = new ClientOptInput().opts(new ClientOpts()).swagger(swagger).config(codegenConfig);
 
@@ -171,6 +173,7 @@ public class DefaultGeneratorTest {
 
         final Swagger swagger = new SwaggerParser().read("src/test/resources/petstore.json");
         CodegenConfig codegenConfig = new JavaClientCodegen();
+        codegenConfig.setInputSpec("src/test/resources/petstore.json");
         codegenConfig.setLibrary("jersey1");
         codegenConfig.setOutputDir(output.getAbsolutePath());
 
@@ -222,6 +225,7 @@ public class DefaultGeneratorTest {
 
         final Swagger swagger = new SwaggerParser().read("src/test/resources/petstore.json");
         CodegenConfig codegenConfig = new JavaClientCodegen();
+        codegenConfig.setInputSpec("src/test/resources/petstore.json");
         codegenConfig.setLibrary("jersey2");
         codegenConfig.setOutputDir(output.getAbsolutePath());
 
@@ -241,6 +245,7 @@ public class DefaultGeneratorTest {
         assertTrue(apiClient.exists());
         assertFalse(containsOverloadedComments(apiClient, TEMPLATE_COMMENT, LIBRARY_COMMENT));
 
+        folder.delete(); // force regeneration of all files.
         codegenConfig.additionalProperties().put(TEMPLATE_DIR, "src/test/resources/2_0/templates/Java");
         //generate content second time while specifying a template folder, so the files from the template are used instead
         new DefaultGenerator().opts(clientOptInput).generate();
@@ -262,6 +267,7 @@ public class DefaultGeneratorTest {
 
         final Swagger swagger = new SwaggerParser().read("src/test/resources/2_0/duplicateOperationIds.yaml");
         CodegenConfig codegenConfig = new JavaClientCodegen();
+        codegenConfig.setInputSpec("src/test/resources/2_0/duplicateOperationIds.yaml");
         codegenConfig.setOutputDir(output.getAbsolutePath());
 
         ClientOptInput clientOptInput = new ClientOptInput().opts(new ClientOpts()).swagger(swagger).config(codegenConfig);
@@ -323,6 +329,7 @@ public class DefaultGeneratorTest {
 
         final Swagger swagger = new SwaggerParser().readWithInfo(spec).getSwagger();
         CodegenConfig codegenConfig = new JavaClientCodegen();
+        codegenConfig.setInputSpec("src/test/java/io/swagger/codegen/DefaultGeneratorTest.java");
         codegenConfig.setOutputDir(output.getAbsolutePath());
 
         ClientOptInput clientOptInput = new ClientOptInput().opts(new ClientOpts()).swagger(swagger).config(codegenConfig);
@@ -370,6 +377,7 @@ public class DefaultGeneratorTest {
 
         final Swagger swagger = new SwaggerParser().readWithInfo(spec).getSwagger();
         CodegenConfig codegenConfig = new JavaClientCodegen();
+        codegenConfig.setInputSpec("src/test/java/io/swagger/codegen/DefaultGeneratorTest.java");
         codegenConfig.setOutputDir(output.getAbsolutePath());
 
         ClientOptInput clientOptInput = new ClientOptInput().opts(new ClientOpts()).swagger(swagger).config(codegenConfig);
@@ -411,6 +419,7 @@ public class DefaultGeneratorTest {
 
         final Swagger swagger = new SwaggerParser().readWithInfo(spec).getSwagger();
         CodegenConfig codegenConfig = new JavaClientCodegen();
+        codegenConfig.setInputSpec("src/test/java/io/swagger/codegen/DefaultGeneratorTest.java");
         codegenConfig.setOutputDir(output.getAbsolutePath());
 
         ClientOptInput clientOptInput = new ClientOptInput().opts(new ClientOpts()).swagger(swagger).config(codegenConfig);
@@ -461,6 +470,7 @@ public class DefaultGeneratorTest {
 
         final Swagger swagger = new SwaggerParser().readWithInfo(spec).getSwagger();
         CodegenConfig codegenConfig = new JavaClientCodegen();
+        codegenConfig.setInputSpec("src/test/java/io/swagger/codegen/DefaultGeneratorTest.java");
         codegenConfig.setOutputDir(output.getAbsolutePath());
 
         ClientOptInput clientOptInput = new ClientOptInput().opts(new ClientOpts()).swagger(swagger).config(codegenConfig);

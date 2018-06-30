@@ -44,6 +44,7 @@ public class CodegenConfigurator implements Serializable {
     private String outputDir;
     private boolean verbose;
     private boolean skipOverwrite;
+	private boolean skipOverwriteByTimestamp;
     private boolean removeOperationIdPrefix;
     private String templateDir;
     private String auth;
@@ -152,6 +153,15 @@ public class CodegenConfigurator implements Serializable {
         this.skipOverwrite = skipOverwrite;
         return this;
     }
+
+    public boolean isSkipOverwriteByTimestamp() {
+        return skipOverwriteByTimestamp;
+    }
+
+	public CodegenConfigurator setSkipOverwriteByTimestamp(boolean skipOverwriteByTimestamp) {
+        this.skipOverwriteByTimestamp = skipOverwriteByTimestamp;
+        return this;
+	}
 
     public String getLang() {
         return lang;
@@ -392,6 +402,7 @@ public class CodegenConfigurator implements Serializable {
         config.setInputSpec(inputSpec);
         config.setOutputDir(outputDir);
         config.setSkipOverwrite(skipOverwrite);
+        config.setSkipOverwriteByTimestamp(skipOverwriteByTimestamp);
         config.setIgnoreFilePathOverride(ignoreFileOverride);
         config.setRemoveOperationIdPrefix(removeOperationIdPrefix);
 

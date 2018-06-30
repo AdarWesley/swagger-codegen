@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Function;
+import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.samskivert.mustache.Mustache.Compiler;
 
@@ -66,6 +67,7 @@ public class DefaultCodegen {
     protected static final Logger LOGGER = LoggerFactory.getLogger(DefaultCodegen.class);
 
     protected String inputSpec;
+    protected Long inputSpecTimestamp;
     protected String outputFolder = "";
     protected Set<String> defaultIncludes = new HashSet<String>();
     protected Map<String, String> typeMapping = new HashMap<String, String>();
@@ -91,6 +93,7 @@ public class DefaultCodegen {
     protected List<SupportingFile> supportingFiles = new ArrayList<SupportingFile>();
     protected List<CliOption> cliOptions = new ArrayList<CliOption>();
     protected boolean skipOverwrite;
+    protected boolean skipOverwriteByTimestamp;
     protected boolean removeOperationIdPrefix;
     protected boolean supportsInheritance;
     protected boolean supportsMixins;
@@ -571,8 +574,19 @@ public class DefaultCodegen {
 
     public void setInputSpec(String inputSpec) {
         this.inputSpec = inputSpec;
+        this.inputSpecTimestamp = 0L;
+        if (!Strings.isNullOrEmpty(inputSpec)) {
+        	File file = new File(inputSpec);
+        	if (file.exists()) {
+        		inputSpecTimestamp = file.lastModified();
+        	}
+        }
     }
 
+    public Long getInputSpecTimestamp() {
+    	return inputSpecTimestamp;
+    }
+    
     public void setTemplateDir(String templateDir) {
         this.templateDir = templateDir;
     }
@@ -3371,6 +3385,11 @@ public class DefaultCodegen {
     }
 
     public boolean shouldOverwrite(String filename) {
+    	if (skipOverwriteByTimestamp) {
+    		File specFile = new File(inputSpec);
+    		File generatedFile = new File(filename);
+    		return !(specFile.exists() && generatedFile.exists() && inputSpecTimestamp < generatedFile.lastModified());
+    	}
         return !(skipOverwrite && new File(filename).exists());
     }
 
@@ -3380,6 +3399,14 @@ public class DefaultCodegen {
 
     public void setSkipOverwrite(boolean skipOverwrite) {
         this.skipOverwrite = skipOverwrite;
+    }
+
+    public boolean isSkipOverwriteByTimestamp() {
+        return skipOverwriteByTimestamp;
+    }
+
+    public void setSkipOverwriteByTimestamp(boolean skipOverwriteByTimestamp) {
+        this.skipOverwriteByTimestamp = skipOverwriteByTimestamp;
     }
 
     public boolean isRemoveOperationIdPrefix() {

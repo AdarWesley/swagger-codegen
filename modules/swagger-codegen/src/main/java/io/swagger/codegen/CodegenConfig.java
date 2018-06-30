@@ -173,6 +173,10 @@ public interface CodegenConfig {
 
     void setSkipOverwrite(boolean skipOverwrite);
 
+    boolean isSkipOverwriteByTimestamp();
+
+    void setSkipOverwriteByTimestamp(boolean skipOverwriteByTimestamp);
+
     boolean isRemoveOperationIdPrefix();
 
     void setRemoveOperationIdPrefix(boolean removeOperationIdPrefix);

@@ -250,7 +250,7 @@ public class DefaultGenerator extends AbstractGenerator implements Generator {
             String suffix = config.modelTestTemplateFiles().get(templateName);
             String filename = config.modelTestFileFolder() + File.separator + config.toModelTestFilename(modelName) + suffix;
             // do not overwrite test file that already exists
-            if (new File(filename).exists()) {
+			if (new File(filename).exists()) {
                 LOGGER.info("File exists. Skipped overwriting " + filename);
                 continue;
             }
@@ -261,7 +261,7 @@ public class DefaultGenerator extends AbstractGenerator implements Generator {
         }
     }
 
-    private void generateModelDocumentation(List<File> files, Map<String, Object> models, String modelName) throws IOException {
+	private void generateModelDocumentation(List<File> files, Map<String, Object> models, String modelName) throws IOException {
         for (String templateName : config.modelDocTemplateFiles().keySet()) {
             String suffix = config.modelDocTemplateFiles().get(templateName);
             String filename = config.modelDocFileFolder() + File.separator + config.toModelDocFilename(modelName) + suffix;
@@ -494,7 +494,7 @@ public class DefaultGenerator extends AbstractGenerator implements Generator {
 
                 for (String templateName : config.apiTemplateFiles().keySet()) {
                     String filename = config.apiFilename(templateName, tag);
-                    if (!config.shouldOverwrite(filename) && new File(filename).exists()) {
+                    if (!config.shouldOverwrite(filename)) {
                         LOGGER.info("Skipped overwriting " + filename);
                         continue;
                     }
@@ -527,7 +527,7 @@ public class DefaultGenerator extends AbstractGenerator implements Generator {
                     // to generate api documentation files
                     for (String templateName : config.apiDocTemplateFiles().keySet()) {
                         String filename = config.apiDocFilename(templateName, tag);
-                        if (!config.shouldOverwrite(filename) && new File(filename).exists()) {
+                        if (!config.shouldOverwrite(filename)) {
                             LOGGER.info("Skipped overwriting " + filename);
                             continue;
                         }

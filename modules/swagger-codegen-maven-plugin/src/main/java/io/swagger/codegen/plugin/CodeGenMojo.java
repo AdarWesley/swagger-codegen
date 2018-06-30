@@ -114,6 +114,13 @@ public class CodeGenMojo extends AbstractMojo {
 
     /**
      * Specifies if the existing files should be overwritten during the generation.
+     * If this flag is set to true, files will be overwritten if they are older than the inputSpec file.
+     */
+    @Parameter(name = "skipOverwriteByTimestamp", required = false)
+    private Boolean skipOverwriteByTimestamp;
+    
+    /**
+     * Specifies if the existing files should be overwritten during the generation.
      */
     @Parameter(name = "removeOperationIdPrefix", required = false)
     private Boolean removeOperationIdPrefix;
@@ -336,6 +343,10 @@ public class CodeGenMojo extends AbstractMojo {
 
         if (skipOverwrite != null) {
             configurator.setSkipOverwrite(skipOverwrite);
+        }
+
+        if (skipOverwriteByTimestamp != null) {
+            configurator.setSkipOverwriteByTimestamp(skipOverwriteByTimestamp);
         }
 
         if (removeOperationIdPrefix != null) {

@@ -69,6 +69,7 @@ public class StaticHtmlTagsTest {
                 return objs;
             }
         };
+        codegenConfig.setInputSpec("src/test/resources/2_0/petstore.json");
         codegenConfig.setOutputDir(folder.getRoot().getAbsolutePath());
             
         ClientOptInput clientOptInput = new ClientOptInput().opts(new ClientOpts()).swagger(swagger)
