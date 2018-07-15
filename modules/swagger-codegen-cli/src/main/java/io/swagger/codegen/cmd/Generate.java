@@ -70,6 +70,12 @@ public class Generate implements Runnable {
                     + "overwritten during the generation.")
     private Boolean skipOverwrite;
 
+    @Option(name = {"-sbt", "--skip-by-timestamp"}, title = "skip overwrite by timestamp",
+            description = "specifies if the existing files should be "
+                    + "overwritten during the generation.  If this flag is specified, existing files will be overwritten "
+            		+ "if they are older than the inputSpec file.")
+    private Boolean skipOverwriteByTimestamp;
+
     @Option(name = {"--api-package"}, title = "api package",
             description = CodegenConstants.API_PACKAGE_DESC)
     private String apiPackage;
@@ -193,6 +199,10 @@ public class Generate implements Runnable {
             configurator.setSkipOverwrite(skipOverwrite);
         }
 
+        if (skipOverwriteByTimestamp != null) {
+            configurator.setSkipOverwriteByTimestamp(skipOverwriteByTimestamp);
+        }
+
         if (isNotEmpty(spec)) {
             configurator.setInputSpec(spec);
         }
@@ -272,7 +282,7 @@ public class Generate implements Runnable {
         if (removeOperationIdPrefix != null) {
             configurator.setRemoveOperationIdPrefix(removeOperationIdPrefix);
         }
-
+        
         applySystemPropertiesKvpList(systemProperties, configurator);
         applyInstantiationTypesKvpList(instantiationTypes, configurator);
         applyImportMappingsKvpList(importMappings, configurator);
