@@ -3,13 +3,13 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>io.swagger</groupId>
-        <artifactId>swagger-codegen-project</artifactId>
+        <artifactId>swagger-codegen-project-awes</artifactId>
         <version>2.4.0-SNAPSHOT</version>
         <relativePath>../..</relativePath>
     </parent>
-    <artifactId>swagger-generator</artifactId>
+    <artifactId>swagger-generator-awes</artifactId>
     <packaging>war</packaging>
-    <name>swagger-generator</name>
+    <name>swagger-generator-awes</name>
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
         <resources>
@@ -123,7 +123,7 @@
                 <groupId>net.revelc.code</groupId>
                 <artifactId>formatter-maven-plugin</artifactId>
                 <configuration>
-                    <!-- Point at the eclipse-formatter.xml in the swagger-codegen parent project directory -->
+                    <!-- Point at the eclipse-formatter.xml in the swagger-codegen-awes parent project directory -->
                     <configFile>${project.basedir}${file.separator}${project.parent.relativePath}${file.separator}eclipse-formatter.xml</configFile>
                 </configuration>
             </plugin>
@@ -137,12 +137,12 @@
         </dependency>
         <dependency>
             <groupId>io.swagger</groupId>
-            <artifactId>swagger-codegen</artifactId>
+            <artifactId>swagger-codegen-awes</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>io.swagger</groupId>
-            <artifactId>swagger-codegen</artifactId>
+            <artifactId>swagger-codegen-awes</artifactId>
             <version>${project.parent.version}</version>
             <type>test-jar</type>
             <scope>test</scope>

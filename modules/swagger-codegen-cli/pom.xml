@@ -2,19 +2,19 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
         <groupId>io.swagger</groupId>
-        <artifactId>swagger-codegen-project</artifactId>
+        <artifactId>swagger-codegen-project-awes</artifactId>
         <version>2.4.0-SNAPSHOT</version>
         <relativePath>../..</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>swagger-codegen-cli</artifactId>
+    <artifactId>swagger-codegen-awes-cli</artifactId>
     <packaging>jar</packaging>
 
-    <name>swagger-codegen (executable)</name>
+    <name>swagger-codegen-awes (executable)</name>
 
     <build>
-        <finalName>swagger-codegen-cli</finalName>
+        <finalName>swagger-codegen-awes-cli</finalName>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -65,7 +65,7 @@
                 <groupId>net.revelc.code</groupId>
                 <artifactId>formatter-maven-plugin</artifactId>
                 <configuration>
-                    <!-- Point at the eclipse-formatter.xml in the swagger-codegen parent project directory -->
+                    <!-- Point at the eclipse-formatter.xml in the swagger-codegen-awes parent project directory -->
                     <configFile>${project.basedir}${file.separator}${project.parent.relativePath}${file.separator}eclipse-formatter.xml</configFile>
                 </configuration>
             </plugin>
@@ -76,7 +76,7 @@
 
         <dependency>
             <groupId>io.swagger</groupId>
-            <artifactId>swagger-codegen</artifactId>
+            <artifactId>swagger-codegen-awes</artifactId>
             <version>${project.version}</version>
         </dependency>
         <!--https://github.com/airlift/airline-->

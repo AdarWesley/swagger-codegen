@@ -26,6 +26,7 @@ import io.swagger.codegen.CodegenOperation;
 import io.swagger.codegen.CodegenParameter;
 import io.swagger.codegen.CodegenProperty;
 import io.swagger.codegen.DefaultCodegen;
+import io.swagger.codegen.mustache.LowercaseLambda;
 import io.swagger.models.Model;
 import io.swagger.models.Operation;
 import io.swagger.models.Path;
@@ -351,6 +352,8 @@ public abstract class AbstractJavaCodegen extends DefaultCodegen implements Code
         // make api and model doc path available in mustache template
         additionalProperties.put("apiDocPath", apiDocPath);
         additionalProperties.put("modelDocPath", modelDocPath);
+        
+        additionalProperties.put("lowercase", new LowercaseLambda());
 
         importMapping.put("List", "java.util.List");
 
