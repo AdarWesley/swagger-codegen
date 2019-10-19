@@ -34,7 +34,7 @@ import javax.validation.Valid;
  */
 {{/appName}}
 @SuppressWarnings("unused")
-@Path("{{^useAnnotatedBasePath}}/{{/useAnnotatedBasePath}}{{#useAnnotatedBasePath}}{{contextPath}}{{/useAnnotatedBasePath}}")
+@Path("/")
 @Api(value = "/", description = "{{description}}")
 {{#addConsumesProducesJson}}
 @Consumes(MediaType.APPLICATION_JSON)
