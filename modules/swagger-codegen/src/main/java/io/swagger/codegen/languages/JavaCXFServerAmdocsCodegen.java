@@ -28,8 +28,16 @@ public class JavaCXFServerAmdocsCodegen extends JavaCXFServerCodegen
         apiTemplateFiles.remove("apiServiceImpl.mustache");
         
         embeddedTemplateDir = templateDir = JAXRS_TEMPLATE_DIRECTORY_NAME + File.separator + "amdocs-cxf";
+        
+        //setUseAnnotatedBasePath(true);
     }
-   
+
+    @Override
+    public void processOpts() {
+    	super.processOpts();
+    	setUseAnnotatedBasePath(true);
+    }
+    
     @Override
     public String getName()
     {
